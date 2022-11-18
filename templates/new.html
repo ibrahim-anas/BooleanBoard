@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="UNCC Notes App">
-        <title>UNCC Notes App - New Note</title>
+        <meta name="description" content="UNCC Tasks App">
+        <title>UNCC Tasks App - New Task</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
@@ -14,28 +14,28 @@
 
        </nav>
 
-        <h1>Welcome {{user}} to the 49er Notes App!</h1>
-        {% if note %}
-            <form action="{{ url_for('update_note', note_id=note.id)}}" method="post">
+        <h1>Welcome {{user}} to the 49er Tasks App!</h1>
+        {% if task %}
+            <form action="{{ url_for('update_task', task_id=task.id)}}" method="post">
         {% else %}
             <form action="new" method="post">
         {% endif %}
-            <p><label>Title </label></p><p>  <input type="text" name="title" value="{% if note %}{{note.title}} {% endif %}"/></p>
-            <p><label>Note </label></p>
+            <p><label>Title </label></p><p>  <input type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
+            <p><label>Task </label></p>
             <p>
-                <textarea name="noteText"  rows="6" cols="0">
-                    {% if note %} 
-                        {{note.text}}
+                <textarea name="taskText"  rows="6" cols="0">
+                    {% if task %} 
+                        {{task.text}}
                     {% else %}
-                        Add your new note here ...
+                        Add your new task here ...
                     {% endif %} 
                 </textarea>
             </p>
             <p>
-                {% if note %}
-                    <input type="submit" value="Update Note"/>
+                {% if task %}
+                    <input type="submit" value="Update Task"/>
                 {% else %}
-                    <input type="submit" value="Add Note"/>
+                    <input type="submit" value="Add Task"/>
                 {% endif %}
             </p>
         </form>

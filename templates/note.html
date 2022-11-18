@@ -3,21 +3,21 @@
     <head>
         <nav>
             <a href="{{ url_for('index') }}"> Home</a> ||
-            <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
-            <a href="{{ url_for('new_note') }}"> Add Notes</a>
+            <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
+            <a href="{{ url_for('new_task') }}"> Add Tasks</a>
             <nav>
                 <a href="{{ url_for('logout') }}">Logout</a>
             </nav>
         </nav>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="UNCC Notes App">
-        <title>UNCC Notes App - View your Note</title>
+        <meta name="description" content="UNCC Tasks App">
+        <title>UNCC Tasks App - View your Task</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
-        <h1>Note details</h1>
+        <h1>Task details</h1>
 
         <table>
             <tr>
@@ -26,23 +26,23 @@
                 <th>Date</th>
             </tr>
             <tr>
-                <td>{{ note.title }}</td>
-                <td>{{ note.text }}</td>
-                <td>{{ note.date }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.text }}</td>
+                <td>{{ task.date }}</td>
                 
             </tr>
         </table>
-        {% if note.comments %}
-                {% if note.comments|length > 0 %}
+        {% if task.comments %}
+                {% if task.comments|length > 0 %}
                     <h2>Comments</h2>
                     <ul>
-                    {% for comment in note.comments %}
+                    {% for comment in task.comments %}
                         <li>{{ comment.content }}</li>
                     {% endfor %}
                     </ul>
                 {% endif %}
         {% endif %}
-        <form action="{{ url_for('new_comment', note_id=note.id) }}" method="post">
+        <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">
             <div class="formwrapper">
                 <h2 class="title">Add a comment</h2>
                     <div class="form-field">

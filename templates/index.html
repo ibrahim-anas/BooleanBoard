@@ -3,8 +3,8 @@
     <head>
         <nav>
             <a href="{{ url_for('index') }}"> Home</a> ||
-            <a href="{{ url_for('get_notes') }}"> My Notes</a> ||
-            <a href="{{ url_for('new_note') }}"> Add Notes</a>
+            <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
+            <a href="{{ url_for('new_task') }}"> Add Tasks</a>
             {% if user %}
                 <nav>
                     <a href="{{ url_for('logout') }}">Logout</a>
@@ -18,24 +18,24 @@
         </nav>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="UNCC Notes App">
-        <title>UNCC Notes App</title>
+        <meta name="description" content="UNCC Tasks App">
+        <title>UNCC Tasks App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
 
-        <h1>Welcome {{user}} to the 49er Notes App!</h1>
+        <h1>Welcome {{user}} to the 49er Tasks App!</h1>
 
-        <h2>Use this site to maintain and organize your notes.</h2>
+        <h2>Use this site to maintain and organize your tasks.</h2>
 
-        <h3>Course notes</h3>
+        <h3>Course tasks</h3>
 
         <h3>To Do</h3>
 
-        <h3>Work notes</h3>
+        <h3>Work tasks</h3>
 
-        <nav> <a href="/notes"> My notes </a> </nav>
+        <nav> <a href="/tasks"> My tasks </a> </nav>
 
     </body>
 </html>
