@@ -25,15 +25,15 @@ db.init_app(app)
 with app.app_context():
     db.create_all()   # run under the app context
              
-# @app.route is a decorator. It gives the function "index" special powers.
+# @app.route is a decorator. It gives the function "home" special powers.
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
 @app.route('/')
-@app.route('/index')
-def index():
+@app.route('/home')
+def home():
     if session.get('user'):
-        return render_template('index.html', user=session['user'])
-    return render_template('index.html')
+        return render_template('home.html', user=session['user'])
+    return render_template('home.html')
 
 @app.route('/tasks')
 def get_tasks():
@@ -160,7 +160,7 @@ def logout():
     if session.get('user'):
         session.clear()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 @app.route('/tasks/<task_id>/comment', methods=['POST'])
 def new_comment(task_id):
