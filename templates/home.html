@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <style>
+            nav {text-align: left;}
+        </style>
         <nav>
             <a href="{{ url_for('home') }}"> Home</a> ||
             <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
@@ -20,22 +23,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Tasks App">
         <title>UNCC Tasks App</title>
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
+    <style>
+        h1, h2, h3 {text-align: center;}
+        h2 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 2rem;
+        }
+        h3 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.5rem;
+        }
+    </style>
     <body>
 
-        <h1>Welcome {{user}} to the 49er Tasks App!</h1>
+        <h1>Welcome {% if user %}{{user}} {% endif %}to Booloen Board</h1>
 
-        <h2>Use this site to maintain and organize your tasks.</h2>
+        <h2>Your personal task management tool:</h2>
 
-        <h3>Course tasks</h3>
+        <h3>- Course assignments</h3>
 
-        <h3>To Do</h3>
+        <h3>- To-Do lists</h3>
 
-        <h3>Work tasks</h3>
-
-        <nav> <a href="/tasks"> My tasks </a> </nav>
-
+        <h3>- Work tasks</h3>
+        
     </body>
 </html>

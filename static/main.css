@@ -1,10 +1,21 @@
 body {
+    background: rgb(0, 0, 0, .85);
     padding: 30px 30px;
     }
 h1{
-    color:green;
+    font-size: 4rem;
+    color:lightblue;
+    font-family: 'Amatic SC', cursive;
 }
 h2{
-    color:gold;
-    background:green;
+    color:white;
+}
+h3{
+    color: white;
+}
+a:link{
+    color: peachpuff;
+}
+a:visited{
+    color: lightpink;
 }

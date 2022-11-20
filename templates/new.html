@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Tasks App">
         <title>UNCC Tasks App - New Task</title>
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
@@ -14,12 +16,20 @@
 
        </nav>
 
-        <h1>Welcome {{user}} to the 49er Tasks App!</h1>
+        <h1>Welcome {{user}} to Booloen Board</h1>
         {% if task %}
             <form action="{{ url_for('update_task', task_id=task.id)}}" method="post">
         {% else %}
             <form action="new" method="post">
         {% endif %}
+        
+        <style>
+            label {
+                font-family: 'Amatic SC', cursive;
+                font-size: 1.5rem;
+                color: white
+            }
+        </style>
             <p><label>Title </label></p><p>  <input type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
             <p><label>Task </label></p>
             <p>
@@ -27,7 +37,7 @@
                     {% if task %} 
                         {{task.text}}
                     {% else %}
-                        Add your new task here ...
+                        Enter task details here:
                     {% endif %} 
                 </textarea>
             </p>

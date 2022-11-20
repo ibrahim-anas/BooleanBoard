@@ -13,31 +13,118 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Tasks App">
         <title>UNCC Tasks App - View your Tasks</title>
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
+    <style>
+        h2 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 2rem;
+            text-align: left
+        }
+        .left-col, .right-col {
+            float: left;
+            width: 30%;
+        }
+        .center-col {
+            float: left;
+            width: 30%;
+        }
+        .left_col, .right_col {
+            background-color: rgba(0, 0, 0, .2);
+            float: left;
+            width: 30%;
+        }
+        .center_col {
+            float: left;
+            width: 30%;
+        }
+    </style>
     <body>
-        <h1>Welcome {{user}} to the 49er Tasks App!</h1>
-
-        <h1>Listing tasks</h1>
-
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Date</th>
-            </tr>
-            {% for task in tasks %}
-            <tr>
-                <td><a href="{{ url_for('get_task', task_id=task.id)}}">{{ task.title }}</a></td>
-                <td>{{ task.date }}</td>
-                <td><a href="{{ url_for('update_task', task_id=task.id)}}">Edit</a></td>
-                <td>
-                    <form action = "{{ url_for('delete_task', task_id=task.id) }}" method="post">
-                        <input type="submit" value="Delete">
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="header">
+            <h1>Welcome {{user}} to Booloen Board</h1>
+        </div>
+        <div class ="container">
+            <div class="left-col">
+                <h2>To-Do</h2>
+            </div>
+            <div class="center-col">
+                <h2>Doing</h2>
+            </div>
+            <div class="right-col">
+                <h2>Done</h2>
+            </div>
+        </div>
+        <hr style="clear:both;"/>
+        <div class="container">
+            <div class="left_col">
+                <style>
+                    th {
+                        font-family: 'Amatic SC', cursive;
+                        font-size: 1.5rem;
+                    }
+                </style>
+                <table>
+                    <tr>
+                        <th style="color: white">Title</th>
+                        <th style="color: white">Date</th>
+                    </tr>
+                    {% for task in tasks %}
+                    <tr>
+                        <td><a href="{{ url_for('get_task', task_id=task.id)}}">{{ task.title }}</a></td>
+                        <td style="color: lightblue; font-family: 'Oswald', sans-serif">{{ task.date }}</td>
+                        <td><a href="{{ url_for('update_task', task_id=task.id)}}">Edit</a></td>
+                        <td>
+                            <form action = "{{ url_for('delete_task', task_id=task.id) }}" method="post">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="center_col">
+                <table>
+                    <tr>
+                        <th style="color: white">Title</th>
+                        <th style="color: white">Date</th>
+                    </tr>
+                    {% for task in tasks %}
+                    <tr>
+                        <td><a href="{{ url_for('get_task', task_id=task.id)}}">{{ task.title }}</a></td>
+                        <td style="color: lightblue; font-family: 'Oswald', sans-serif">{{ task.date }}</td>
+                        <td><a href="{{ url_for('update_task', task_id=task.id)}}">Edit</a></td>
+                        <td>
+                            <form action = "{{ url_for('delete_task', task_id=task.id) }}" method="post">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="right_col">
+                <table>
+                    <tr>
+                        <th style="color: white">Title</th>
+                        <th style="color: white">Date</th>
+                    </tr>
+                    {% for task in tasks %}
+                    <tr>
+                        <td><a href="{{ url_for('get_task', task_id=task.id)}}">{{ task.title }}</a></td>
+                        <td style="color: lightblue; font-family: 'Oswald', sans-serif">{{ task.date }}</td>
+                        <td><a href="{{ url_for('update_task', task_id=task.id)}}">Edit</a></td>
+                        <td>
+                            <form action = "{{ url_for('delete_task', task_id=task.id) }}" method="post">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </body>
 </html>
