@@ -16,7 +16,7 @@
 
        </nav>
 
-        <h1>Welcome {{user}} to Booloen Board</h1>
+        <h1>Welcome {{user}} to Boolean Board</h1>
         {% if task %}
             <form action="{{ url_for('update_task', task_id=task.id)}}" method="post">
         {% else %}
