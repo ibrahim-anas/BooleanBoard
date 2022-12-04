@@ -44,3 +44,4 @@ class Comment(db.Model):
         self.content = content
         self.task_id = task_id
         self.user_id = user_id
+

@@ -33,6 +33,8 @@
             <p><label>Title </label></p><p>  <input type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
             <p><label>Task </label></p>
             <p>
+
+                
                 <textarea name="taskText"  rows="6" cols="0">
                     {% if task %} 
                         {{task.text}}
