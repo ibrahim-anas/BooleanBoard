@@ -12,6 +12,7 @@ from models import User as User
 from models import Comment as Comment
 from forms import RegisterForm, LoginForm, CommentForm
 import bcrypt
+from flask import jsonify
  
 app = Flask(__name__)     # create an app
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///BooleanBoard_app.db'
@@ -52,6 +53,17 @@ def get_task(task_id):
         form = CommentForm()
 
         return render_template('task.html', task = my_task, user = session['user'], form = form)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/report', methods=['GET','POST'] )
+def get_report():
+    if session.get('user'):
+        if request.method == 'POST':
+
+            return redirect(url_for('get_report'))
+        else:
+            return render_template('report.html')
     else:
         return redirect(url_for('login'))
 
@@ -178,6 +190,7 @@ def new_comment(task_id):
 
     else:
         return redirect(url_for('login'))
+
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 

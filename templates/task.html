@@ -71,7 +71,9 @@
                         {{ form.comment }}
                     </div>
                 {{ form.submit }}
-            </div>
+        </form>
+        <form action="{{ url_for('get_report') }}" method="POST">
+                {{ form.submit1 }}
         </form>
     </body>
 </html>
