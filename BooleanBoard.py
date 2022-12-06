@@ -38,7 +38,7 @@ def home():
 @app.route('/tasks')
 def get_tasks():
     if session.get('user'):
-        my_tasks = db.session.query(Task).filter_by(user_id=session['user_id']).all()
+        my_tasks = db.session.query(Task).all()
     
         return render_template('tasks.html', tasks = my_tasks, user = session['user'])
     else:
@@ -47,7 +47,7 @@ def get_tasks():
 @app.route('/tasks/<task_id>')
 def get_task(task_id):
     if session.get('user'):
-        my_task = db.session.query(Task).filter_by(id=task_id, user_id=session['user_id']).one()
+        my_task = db.session.query(Task).filter_by(id=task_id).one()
         
         form = CommentForm()
 

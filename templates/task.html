@@ -16,7 +16,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='like.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h1>Task details</h1>
@@ -52,16 +54,37 @@
             li {
                 font-family: 'Oswald', sans-serif;
             }
-
         </style>
         {% if task.comments %}
                 {% if task.comments|length > 0 %}
                     <h2>Comments</h2>
                     <ul>
                     {% for comment in task.comments %}
-                        <li style="color: lightblue">{{ comment.content }}</li>
+                        <li style="color: lightblue">{{ comment.content }} </li>
+                            <div>
+                              <button class="btn btn-like">
+                                <span class="btn-icon btn--icon-default">
+                                    <span class="fa fa-heart"></span>
+                                </span>
+                                <span class="btn-icon btn--icon-liked">
+                                    <span class="fa fa-heart"></span>
+                                </span>
+                                <span class="btn-content  btn-content--liked">
+                                </span>
+                                <span class="btn-content btn-content--default">
+                                </span>
+                            </button>
+                                <br/>
+                          </div>
                     {% endfor %}
-                    </ul>
+                    <script type = "text/javascript">  
+                      const allbuttons = document.getElementsByClassName("btn")
+                      console.log(allbuttons);
+                      for (const easy of allbuttons){
+                        console.log(easy)
+                        easy.addEventListener('click', () => {easy.classList.toggle('liked')})
+                    }
+                      </script> 
                 {% endif %}
         {% endif %}
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">
@@ -72,6 +95,7 @@
                     </div>
                 {{ form.submit }}
             </div>
+            <div class="main-content"></div>
         </form>
     </body>
 </html>
