@@ -82,8 +82,11 @@
                       console.log(allbuttons);
                       for (const easy of allbuttons){
                         console.log(easy)
+                        if (easy.getAttribute("background-color") == 'white'){
                         easy.addEventListener('click', () => {easy.classList.toggle('liked')})
-                    }
+                      }else{
+                        easy.addEventListener('click', () => {easy.classList.toggle('liked')})
+                    }}
                       </script> 
                 {% endif %}
         {% endif %}

@@ -179,6 +179,22 @@ def new_comment(task_id):
     else:
         return redirect(url_for('login'))
 
+@app.route('/tasks/<task_id>/like', methods=['GET', 'POST'])
+def update_like(comment_id, task_id):
+    if session.get('user'):
+        if request.method == 'POST':
+            comment = db.session.query(Comment).filter_by(id=comment_id).one()
+            comment.comment_like += 1
+            db.session.add(comment)
+            db.session.commit()
+            return redirect(url_for('get_task', task_id=task_id))
+        else:
+            my_task = db.session.query(Task).filter_by(id=task_id).one()
+
+            return render_template('new.html', task=my_task, user=session['user'])
+    else:
+        return redirect(url_for('login'))
+
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
