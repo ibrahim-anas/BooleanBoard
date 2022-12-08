@@ -51,7 +51,7 @@ def get_task(task_id):
         
         form = CommentForm()
 
-        return render_template('task.html', task = my_task, user = session['user'], form = form)
+        return render_template('task.html', task = my_task, user = session['user'], form = form, Comment=Comment)
     else:
         return redirect(url_for('login'))
 
@@ -179,12 +179,12 @@ def new_comment(task_id):
     else:
         return redirect(url_for('login'))
 
-@app.route('/tasks/<task_id>/like', methods=['GET', 'POST'])
+@app.route('/tasks/<task_id>/<comment_id>', methods=['GET', 'POST'])
 def update_like(comment_id, task_id):
     if session.get('user'):
         if request.method == 'POST':
-            comment = db.session.query(Comment).filter_by(id=comment_id).one()
-            comment.comment_like += 1
+            comment = db.session.query(Comment).filter_by(id=1).one()
+            comment.like += 1
             db.session.add(comment)
             db.session.commit()
             return redirect(url_for('get_task', task_id=task_id))
