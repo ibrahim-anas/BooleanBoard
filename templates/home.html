@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="div1" lang="en">
     <head>
         <style>
             nav {text-align: left;}
@@ -27,21 +27,72 @@
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        {% if user %} 
+            <!-- {% if user.bg_status == "1" %} -->
+            {{user}}
+                
+                <!-- <link rel="stylesheet" href="{{ url_for('static', filename='background1.css') }}"> -->
+
+            <!-- {% endif %} -->
+        {% endif %}
+        
     </head>
     <style>
         h1, h2, h3 {text-align: center;}
+            
         h2 {
             font-family: 'Amatic SC', cursive;
             font-size: 2rem;
         }
+
         h3 {
             font-family: 'Amatic SC', cursive;
             font-size: 1.5rem;
         }
+
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropup {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropup-content {
+            display: none;
+            position: absolute bottom;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            bottom: 50px;
+            z-index: 1;
+        }
+
+        .dropup-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropup-content a:hover {background-color: #ccc}
+
+        .dropup:hover .dropup-content {
+            display: block;
+        }
+
+        .dropup:hover .dropbtn {
+            background-color: #2980B9;
+        }
+
     </style>
     <body>
 
-        <h1>Welcome {% if user %}{{user}} {% endif %}to Boolean Board</h1>
+        <h1>Welcome {% if user %} {{user}} {% endif %}to Boolean Board</h1>
 
         <h2>Your personal task management tool:</h2>
 
@@ -50,6 +101,33 @@
         <h3>- To-Do lists</h3>
 
         <h3>- Work tasks</h3>
+
+        <!-- <button type="button" onclick="changeBG1()">Click Me!</button> -->
         
+        <div class="dropup">
+            <button class="dropbtn">Background</button>
+            <div class="dropup-content">
+              <a href="#" onclick="changeBG1()">Red Abstract</a>
+              <a href="#" onclick="changeBG2()">Dark Abstract</a>
+              <a href="#" onclick="changeBG3()">Mountain</a>
+              <a href="#" onclick="changeBG4()">Chalk Board</a>
+            </div>
+        </div>
+        <script> 
+        function changeBG1() {
+            document.getElementById("div1").style.backgroundImage = "url('https://wallpaperaccess.com/full/28963.jpg')";
+        }
+        function changeBG2() {
+            document.getElementById("div1").style.backgroundImage = "url('https://wallpaperaccess.com/full/221443.jpg')";
+        }
+
+        function changeBG3() {
+            document.getElementById("div1").style.backgroundImage = "url('https://c4.wallpaperflare.com/wallpaper/384/551/752/low-poly-isometric-mountains-wallpaper-preview.jpg')";
+        }
+
+        function changeBG4() {
+            document.getElementById("div1").style.backgroundImage = "url('https://images.template.net/111462/free-aesthetic-chalkboard-background-8mg7d.jpg')";
+        }
+        </script>
     </body>
 </html>
