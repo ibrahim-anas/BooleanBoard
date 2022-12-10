@@ -67,7 +67,7 @@
                     {% for comment in task.comments %}
                         <li style="color: lightblue">{{ comment.content }} </li>
                             <div>
-                            <form action="{{ url_for('update_like', task_id=task.id , comment_id=1 }}" method="post">
+                            <form action="{{ url_for('update_like', task_id=task.id , comment_id=comment.id) }}" method="post">
                               <button class="btn btn-like">
                                 <span class="btn-icon btn--icon-default">
                                     <span class="fa fa-heart"></span>
@@ -84,17 +84,7 @@
                                 
                                 <h3 style="color: lightblue">Likes: {{ comment.like }} </h3>
                     {% endfor %}
-                    <script type = "text/javascript">
-                      const allbuttons = document.getElementsByClassName("btn")
-                      console.log(allbuttons);
-                      for (const easy of allbuttons){
-                        console.log(easy)
-                        if (easy.getAttribute("background-color") == 'white'){
-                        easy.addEventListener('click', () => {easy.classList.toggle('liked')})
-                    }else{
-                        easy.addEventListener('click', () => {easy.classList.toggle('liked')})
-                    }}
-                      </script> 
+
                 {% endif %}
         {% endif %}
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">

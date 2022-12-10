@@ -183,7 +183,7 @@ def new_comment(task_id):
 def update_like(comment_id, task_id):
     if session.get('user'):
         if request.method == 'POST':
-            comment = db.session.query(Comment).filter_by(id=1).one()
+            comment = db.session.query(Comment).filter_by(id=comment_id).one()
             comment.like += 1
             db.session.add(comment)
             db.session.commit()
