@@ -16,7 +16,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald:wght@200&display=swap" rel="stylesheet">
         <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='like.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h1>Task details</h1>
@@ -49,19 +51,40 @@
                 font-size: 1.5rem;
                 font-family: 'Amatic SC', cursive;
             }
+            h3 {
+                color: lightblue;
+                font-size: .9rem;
+                font-family: 'Oswald', sans-serif;
+            }
             li {
                 font-family: 'Oswald', sans-serif;
             }
-
         </style>
         {% if task.comments %}
                 {% if task.comments|length > 0 %}
                     <h2>Comments</h2>
                     <ul>
                     {% for comment in task.comments %}
-                        <li style="color: lightblue">{{ comment.content }}</li>
+                        <li style="color: lightblue">{{ comment.content }} </li>
+                            <div>
+                            <form action="{{ url_for('update_like', task_id=task.id , comment_id=comment.id) }}" method="post">
+                              <button class="btn btn-like">
+                                <span class="btn-icon btn--icon-default">
+                                    <span class="fa fa-heart"></span>
+                                </span>
+                                <span class="btn-icon btn--icon-liked">
+                                    <span class="fa fa-heart"></span>
+                                </span>
+                                <span class="btn-content  btn-content--liked">
+                                </span>
+                                <span class="btn-content btn-content--default">
+                                </span>
+                            </button>
+                        </form>
+                                
+                                <h3 style="color: lightblue">Likes: {{ comment.like }} </h3>
                     {% endfor %}
-                    </ul>
+
                 {% endif %}
         {% endif %}
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">

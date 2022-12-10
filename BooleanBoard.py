@@ -39,7 +39,7 @@ def home():
 @app.route('/tasks')
 def get_tasks():
     if session.get('user'):
-        my_tasks = db.session.query(Task).filter_by(user_id=session['user_id']).all()
+        my_tasks = db.session.query(Task).all()
     
         return render_template('tasks.html', tasks = my_tasks, user = session['user'])
     else:
@@ -48,11 +48,22 @@ def get_tasks():
 @app.route('/tasks/<task_id>')
 def get_task(task_id):
     if session.get('user'):
-        my_task = db.session.query(Task).filter_by(id=task_id, user_id=session['user_id']).one()
+        my_task = db.session.query(Task).filter_by(id=task_id).one()
         
         form = CommentForm()
 
-        return render_template('task.html', task = my_task, user = session['user'], form = form)
+        return render_template('task.html', task = my_task, user = session['user'], form = form, Comment=Comment)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/report', methods=['GET','POST'] )
+def get_report():
+    if session.get('user'):
+        if request.method == 'POST':
+
+            return redirect(url_for('get_report'))
+        else:
+            return render_template('report.html')
     else:
         return redirect(url_for('login'))
 
@@ -188,6 +199,22 @@ def new_comment(task_id):
 
         return redirect(url_for('get_task', task_id=task_id))
 
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/tasks/<task_id>/<comment_id>', methods=['GET', 'POST'])
+def update_like(comment_id, task_id):
+    if session.get('user'):
+        if request.method == 'POST':
+            comment = db.session.query(Comment).filter_by(id=comment_id).one()
+            comment.like += 1
+            db.session.add(comment)
+            db.session.commit()
+            return redirect(url_for('get_task', task_id=task_id))
+        else:
+            my_task = db.session.query(Task).filter_by(id=task_id).one()
+
+            return render_template('new.html', task=my_task, user=session['user'])
     else:
         return redirect(url_for('login'))
 

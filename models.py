@@ -38,6 +38,7 @@ class Comment(db.Model):
     content = db.Column(db.VARCHAR, nullable=False)
     task_id = db.Column(db.Integer, db.ForeignKey("task.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    like = db.Column(db.Integer, default=0)
 
     def __init__(self, content, task_id, user_id):
         self.date_posted = datetime.date.today()
