@@ -1,20 +1,6 @@
-/* body {
-    background: rgb(0, 0, 0, .85);
-    padding: 30px 30px;
-}  */
 html{
-    background: url(images/mountain.jpg) top left/cover no-repeat;
+    background: url(https://wallpaperaccess.com/full/221443.jpg) top left/cover no-repeat;
 } 
-/* BG1{
-    background: url(images/black.jpg) top left/cover no-repeat;
-}
-BG2{
-    background: url(images/mountain.jpg) top left/cover no-repeat;
-}
-BG3{
-    background: url(images/chalk_board.png) top left/cover no-repeat;
-} */
-
 h1{
     font-size: 4rem;
     color:lightblue;

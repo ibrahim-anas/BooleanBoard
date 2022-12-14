@@ -7,13 +7,13 @@
         <nav>
             <a href="{{ url_for('home') }}"> Home</a> ||
             <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
-            <a href="{{ url_for('new_task') }}"> Add Tasks</a>
+            <a href="{{ url_for('new_task') }}"> Add Tasks</a> ||
             {% if user %}
-                <nav>
+                <nav style="display:inline-block;">
                     <a href="{{ url_for('logout') }}">Logout</a>
                 </nav>
             {% else %}
-                <nav>
+                <nav style="display:inline-block;">
                     <a href="{{ url_for('login') }}">Sign In</a> ||
                     <a href="{{ url_for('register') }}">Register</a>
                 </nav>
@@ -28,12 +28,11 @@
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         {% if user %} 
-            <!-- {% if user.bg_status == "1" %} -->
-            {{user}}
-                
-                <!-- <link rel="stylesheet" href="{{ url_for('static', filename='background1.css') }}"> -->
+            {% if user.bg_status != 0 %}
+            
+                <link rel="stylesheet" href="{{ url_for('static', filename='background1.css') }}">
 
-            <!-- {% endif %} -->
+            {% endif %}
         {% endif %}
         
     </head>
@@ -104,7 +103,7 @@
 
         <!-- <button type="button" onclick="changeBG1()">Click Me!</button> -->
         
-        <div class="dropup">
+        <!-- <div class="dropup">
             <button class="dropbtn">Background</button>
             <div class="dropup-content">
               <a href="#" onclick="changeBG1()">Red Abstract</a>
@@ -128,6 +127,6 @@
         function changeBG4() {
             document.getElementById("div1").style.backgroundImage = "url('https://images.template.net/111462/free-aesthetic-chalkboard-background-8mg7d.jpg')";
         }
-        </script>
+        </script> -->
     </body>
 </html>
