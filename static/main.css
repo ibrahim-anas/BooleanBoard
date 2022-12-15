@@ -1,7 +1,6 @@
-body {
-    background: rgb(0, 0, 0, .85);
-    padding: 30px 30px;
-    }
+html{
+    background: url(https://wallpaperaccess.com/full/221443.jpg) top left/cover no-repeat;
+} 
 h1{
     font-size: 4rem;
     color:lightblue;

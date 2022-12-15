@@ -22,6 +22,7 @@ class User(db.Model):
     email = db.Column("email", db.String(100))
     password = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
+    bg_status = db.Column(db.Integer, default = 1)
     tasks = db.relationship("Task", backref="user", lazy=True)
     comments = db.relationship("Comment", backref="user", lazy=True)
 
