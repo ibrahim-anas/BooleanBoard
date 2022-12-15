@@ -63,18 +63,7 @@ def get_report():
 
             return redirect(url_for('get_report'))
         else:
-            return render_template('report.html')
-    else:
-        return redirect(url_for('login'))
-
-@app.route('/report', methods=['GET','POST'] )
-def get_report():
-    if session.get('user'):
-        if request.method == 'POST':
-
-            return redirect(url_for('get_report'))
-        else:
-            return render_template('report.html')
+            return render_template('report.html', user=session['user'])
     else:
         return redirect(url_for('login'))
 
